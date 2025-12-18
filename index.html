@@ -15,7 +15,7 @@
             background-color: #f0f2f5;
             color: #333;
         }
-        .section-heading { /* Renamed from section-title for clarity on "pages" */
+        .section-heading {
             position: relative;
             padding-bottom: 0.5rem;
             margin-bottom: 1.5rem;
@@ -29,11 +29,11 @@
             bottom: 0;
             width: 50px;
             height: 3px;
-            background-color: #8B5CF6; /* Purple-500 */
-            border-radius: 9999px; /* Fully rounded */
+            background-color: #8B5CF6;
+            border-radius: 9999px;
         }
         .section-heading i {
-            color: #8B5CF6; /* Purple-500 */
+            color: #8B5CF6;
             margin-right: 0.75rem;
         }
         .sticky-nav {
@@ -42,41 +42,38 @@
             z-index: 1000;
         }
         .nav-link.active {
-            font-weight: 700; /* Bold active link */
-            color: #d8b4fe; /* Lighter purple for active state */
+            font-weight: 700;
+            color: #d8b4fe;
             border-bottom: 2px solid #d8b4fe;
             padding-bottom: 4px;
         }
         .content-page {
-            display: none; /* Hide all pages by default */
+            display: none;
         }
         .content-page.active {
-            display: block; /* Show active page */
+            display: block;
         }
-        .project-toggle-content { /* For nested project details */
+        .project-toggle-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-out;
         }
         .project-toggle-content.expanded {
-            max-height: 500px; /* Adjust based on content height */
+            max-height: 500px;
             transition: max-height 0.5s ease-in;
         }
-        /* Custom styling for logos */
         .university-logo {
-            height: 2.5rem; /* Adjust size as needed */
+            height: 2.5rem;
             width: auto;
-            margin-right: 0.75rem; /* Space to the right of the logo when it's on the left */
+            margin-right: 0.75rem;
             vertical-align: middle;
-            border-radius: 0.25rem; /* Slightly rounded corners for the placeholder */
+            border-radius: 0.25rem;
         }
         .education-entry-heading {
             display: flex;
             align-items: center;
-            margin-bottom: 0.5rem; /* Adjust spacing as needed */
+            margin-bottom: 0.5rem;
         }
-
-        /* Modal specific styles */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -135,20 +132,17 @@
         .publication-item:last-child {
             border-bottom: none;
         }
-
-        /* Responsive styling for the Instagram embed blockquote */
         .instagram-embed-block {
-            max-width: 540px; /* As specified in Instagram's embed code */
-            min-width: 326px; /* As specified in Instagram's embed code */
-            width: 100%; /* Make it responsive */
-            margin: 1rem auto; /* Center it and add vertical spacing */
+            max-width: 540px;
+            min-width: 326px;
+            width: 100%;
+            margin: 1rem auto;
             background: #FFF;
             border: 0;
             border-radius: 3px;
             box-shadow: 0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
             padding: 0;
         }
-        /* Ensure the script for Instagram embeds is loaded at the end of the body */
     </style>
 </head>
 <body class="bg-gray-100">
@@ -169,7 +163,7 @@
             <div class="flex flex-col md:flex-row items-center md:justify-between">
                 <!-- Photo and Name/Title -->
                 <div class="flex flex-col md:flex-row items-center text-center md:text-left mb-6 md:mb-0">
-                    <img src="me.jpg" alt="Baraa Al Jorf" class="w-32 h-32 rounded-full object-cover mr-6 mb-4 md:mb-0 border-4 border-purple-200 shadow-md">
+                    <img src="https://placehold.co/150x150?text=Profile+Pic" alt="Baraa Al Jorf" class="w-32 h-32 rounded-full object-cover mr-6 mb-4 md:mb-0 border-4 border-purple-200 shadow-md">
                     <div>
                         <h1 class="text-5xl font-extrabold text-gray-900 leading-tight">Baraa Al Jorf</h1>
                         <p class="text-2xl text-gray-600 mt-2">Advancing Multimodal Foundation Models for Healthcare</p>
@@ -193,6 +187,12 @@
                 <a href="https://www.linkedin.com/in/baraaaljorf/" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
                     <i class="fab fa-linkedin mr-2 text-purple-600"></i>LinkedIn
                 </a>
+                <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=ozfqb_MAAAAJ" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
+                    <i class="fas fa-graduation-cap mr-2 text-purple-600"></i>Google Scholar
+                </a>
+                <a href="https://github.com/BaraaAlJorf" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
+                    <i class="fab fa-github mr-2 text-purple-600"></i>GitHub
+                </a>
             </div>
         </header>
 
@@ -212,7 +212,7 @@
                 <div class="space-y-6">
                     <div>
                         <div class="education-entry-heading">
-                            <img src="nyulogo.png" alt="NYU Logo" class="university-logo">
+                            <img src="https://placehold.co/100x40?text=NYU" alt="NYU Logo" class="university-logo">
                             <h4 class="text-xl font-semibold text-gray-700">PhD in Computer Science, New York University <span class="text-gray-600 font-normal">9/2023 - Present</span></h4>
                         </div>
                         <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
@@ -230,7 +230,7 @@
                     </div>
                     <div>
                         <div class="education-entry-heading">
-                            <img src="columbialogo.png" alt="Columbia University Logo" class="university-logo">
+                            <img src="https://placehold.co/100x40?text=Columbia" alt="Columbia University Logo" class="university-logo">
                             <h4 class="text-xl font-semibold text-gray-700">Visiting PhD Student, Columbia University <span class="text-gray-600 font-normal">1/2025 – 5/2025</span></h4>
                         </div>
                         <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
@@ -240,7 +240,7 @@
                     </div>
                     <div>
                         <div class="education-entry-heading">
-                            <img src="nyuadlogo.png" alt="NYU Abu Dhabi Logo" class="university-logo">
+                            <img src="https://placehold.co/100x40?text=NYUAD" alt="NYU Abu Dhabi Logo" class="university-logo">
                             <h4 class="text-xl font-semibold text-gray-700">BSc in Computer Engineering, New York University <span class="text-gray-600 font-normal">8/2019 - 5/2023</span></h4>
                         </div>
                         <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
@@ -261,7 +261,10 @@
                 <div class="space-y-4">
                     <h3 class="text-xl font-semibold text-gray-700 mt-4">Accepted</h3>
                     <ul class="list-none pl-0 space-y-2">
-                        <li class="publication-item cursor-pointer" data-pub-id="pub5">
+                        <li class="publication-item cursor-pointer" data-pub-id="pub9">
+                            <span class="text-purple-600 font-medium">Multimodal AI and Machine Learning for Precision Medicine.</span>
+                        </li>
+                         <li class="publication-item cursor-pointer" data-pub-id="pub5">
                             <span class="text-purple-600 font-medium">MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data.</span>
                         </li>
                         <li class="publication-item cursor-pointer" data-pub-id="pub1">
@@ -276,19 +279,28 @@
                         <li class="publication-item cursor-pointer" data-pub-id="pub4">
                             <span class="text-purple-600 font-medium">Multimodal Contrastive Image-EHR Pre-training Enhances In-hospital Deterioration Prediction.</span>
                         </li>
+                        <li class="publication-item cursor-pointer" data-pub-id="pub10">
+                            <span class="text-purple-600 font-medium">Advancing Multimodal Foundation Models in Healthcare: A Framework of Guidelines, Reviews, and Novel Architectures.</span>
+                        </li>
+                        <li class="publication-item cursor-pointer" data-pub-id="pub11">
+                            <span class="text-purple-600 font-medium">MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data: Path to Agentic Systems.</span>
+                        </li>
                     </ul>
 
                     <h3 class="text-xl font-semibold text-gray-700 mt-6">Under Review</h3>
                     <ul class="list-none pl-0 space-y-2">
                         <li class="publication-item cursor-pointer" data-pub-id="pub6">
-                            <span class="text-purple-600 font-medium">Data-centric Guidelines for Designing AI Foundation Models in Medicine.</span>
+                            <span class="text-purple-600 font-medium">A Data-Centric Perspective on Designing AI Foundation Models for Healthcare.</span>
                         </li>
                     </ul>
 
                     <h3 class="text-xl font-semibold text-gray-700 mt-6">In Preparation</h3>
                     <ul class="list-none pl-0 space-y-2">
+                        <li class="publication-item cursor-pointer" data-pub-id="pub8">
+                            <span class="text-purple-600 font-medium">AgentiCDS: Improving Clinical LLM Reasoning using Multi-Agent Collaboration.</span>
+                        </li>
                         <li class="publication-item cursor-pointer" data-pub-id="pub7">
-                            <span class="text-purple-600 font-medium">Roadmap towards Generalist AI Foundation Models in Healthcare: Capabilities and Outlook.</span>
+                            <span class="text-purple-600 font-medium">Multimodal Foundation Models in Medicine: A Roadmap towards Agentic Clinical AI.</span>
                         </li>
                     </ul>
                 </div>
@@ -300,6 +312,31 @@
                     <i class="fas fa-briefcase"></i>Leadership & Experience
                 </h2>
                 <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700">Graduate Teaching Assistant, New York University Abu Dhabi</h3>
+                        <p class="text-gray-600">9/2025 – Present</p>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
+                            <li>Mentored 25 students in Arabic Computational Linguistics, clarifying complex NLP concepts.</li>
+                            <li>Developed and graded assignments, providing constructive feedback to reinforce student learning.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700">Graduate Student Council President, New York University Abu Dhabi</h3>
+                        <p class="text-gray-600">9/2025 - Present</p>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
+                            <li>Organized and managed logistics for large scale graduate community events.</li>
+                            <li>Coordinated communications between the graduate student community and university admin.</li>
+                            <li>Represented graduate students as a member of the university bookstore committee.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700">Intensive Care Unit Shadow, Cleveland Clinic Abu Dhabi</h3>
+                        <p class="text-gray-600">7/2025</p>
+                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
+                            <li>Conducted a one-week immersive shadowing experience to inform the design of the AgentiCDS system.</li>
+                            <li>Attended daily ICU rounds to identify opportunities for AI-driven predictive tools.</li>
+                        </ul>
+                    </div>
                     <div>
                         <h3 class="text-xl font-semibold text-gray-700">Graduate Research Assistant, New York University Abu Dhabi</h3>
                         <p class="text-gray-600">7/2023 - Present</p>
@@ -327,14 +364,6 @@
                             <li>Moderated a focus group session, gathering clinical insights into the challenges and opportunities of clinical AI deployment.</li>
                         </ul>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Presenter, ADIA Symposium</h3>
-                        <p class="text-gray-600">11/2024</p>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Presented "Advancing Multimodal Foundation Models in Healthcare: A Framework of Guidelines, Reviews, and Novel Architectures" to an audience of global AI researchers and healthcare professionals.</li>
-                            <li>Highlighted novel fusion strategies, guidelines for clinical applications, and findings from a comprehensive literature review.</li>
-                        </ul>
-                    </div>
                 </div>
             </section>
 
@@ -352,7 +381,7 @@
                         </div>
                         <div id="project-1-details" class="project-toggle-content">
                             <p class="text-gray-600 mt-2 ml-4">Detailed a theoretical framework proving the effect of layered pretraining for Large Language Model encoders for classification tasks and verified our findings empirically.</p>
-                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="https://drive.google.com/file/d/11mhJp_Msx4zUxPgk2ZFUxwL6PU1qfYN7/view?usp=sharing" target="_blank" class="text-purple-600 hover:underline">https://drive.google.com/file/d/11mhJp_Msx4zUxPgk2ZFUxwL6PU1qfYN7/view?usp=sharing</a></p>
+                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="#" target="_blank" class="text-purple-600 hover:underline">View Project</a></p>
                         </div>
                     </div>
                     <!-- Project 2: In-Context-Learning with LLMs -->
@@ -363,7 +392,7 @@
                         </div>
                         <div id="project-2-details" class="project-toggle-content">
                             <p class="text-gray-600 mt-2 ml-4">Developed a GPT-4 based AI agent leveraging in-context learning to improve LLM decision-making. Designed experiments against heuristic bots and human players, achieving up to 80% win rate.</p>
-                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="https://drive.google.com/file/d/1bCXZMNmLq2JCUoy0Zwsot6ynd0_C1CTX/view?usp=sharing" target="_blank" class="text-purple-600 hover:underline">https://drive.google.com/file/d/1bCXZMNmLq2JCUoy0Zwsot6ynd0_C1CTX/view?usp=sharing</a></p>
+                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="#" target="_blank" class="text-purple-600 hover:underline">View Project</a></p>
                         </div>
                     </div>
                     <!-- Project 3: Dynamic Hierarchical Fusion -->
@@ -374,7 +403,7 @@
                         </div>
                         <div id="project-3-details" class="project-toggle-content">
                             <p class="text-gray-600 mt-2 ml-4">Created a novel hierarchical fusion framework incorporating sample-specific fusion of electronic health records, chest x-rays, discharge notes, and radiology reports.</p>
-                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="https://drive.google.com/file/d/1PMt3bwZrfIv5uUoF_HosABbdr8RpZDwz/view?pli=1" target="_blank" class="text-purple-600 hover:underline">https://drive.google.com/file/d/1PMt3bwZrfIv5uUoF_HosABbdr8RpZDwz/view?pli=1</a></p>
+                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="#" target="_blank" class="text-purple-600 hover:underline">View Project</a></p>
                         </div>
                     </div>
 
@@ -396,8 +425,14 @@
                                             </div>
                                         </div>
                                         <div style="padding: 19% 0;"></div>
-                                        <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this profile on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/baraadraws/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank">BaraaDraws</a> (@<a href="https://www.instagram.com/baraadraws/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px;" target="_blank">baraadraws</a>) • Instagram photos and videos</p></div></blockquote>
-                        <script async src="//www.instagram.com/embed.js"></script>
+                                        <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><i class="fab fa-instagram text-4xl text-gray-400"></i></div>
+                                        <div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this profile on Instagram</div></div>
+                                        <div style="padding: 12.5% 0;"></div>
+                                    </a>
+                                </div>
+                            </blockquote>
+                            <script async src="//www.instagram.com/embed.js"></script>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -539,6 +574,7 @@
             <p class="text-gray-700 mb-2"><strong>Authors:</strong> <span id="modal-pub-authors"></span></p>
             <p class="text-gray-700 mb-2"><strong>Status:</strong> <span id="modal-pub-status"></span></p>
             <p class="text-gray-700 mb-2"><strong>Venue:</strong> <span id="modal-pub-venue"></span></p>
+            <p class="text-gray-700 mb-2"><strong>Type:</strong> <span id="modal-pub-type"></span></p>
             <p class="text-gray-700 mb-4"><strong>Link:</strong> <a id="modal-pub-link" href="#" target="_blank" class="text-purple-600 hover:underline">TBD</a></p>
         </div>
     </div>
@@ -551,49 +587,89 @@
                 authors: "B. Al Jorf, F. Shamout.",
                 status: "Accepted",
                 venue: "47th Conference of the IEEE Engineering in Medicine and Biology Society.",
-                link: "#" // Poster
+                type: "Poster",
+                link: "N/A"
             },
             pub2: {
                 title: "MSMA: Multistage Missingness-Aware Fusion Network of Diverse Clinical Modalities for In-hospital Mortality Prediction.",
                 authors: "B. Al Jorf, F. Shamout.",
                 status: "Accepted",
                 venue: "2025 Northeast Bioengineering Conference.",
-                link: "#" // Poster
+                type: "Poster",
+                link: "N/A"
             },
             pub3: {
                 title: "MedMod: Multimodal Benchmark for Medical Prediction Tasks with Electronic Health Records and Chest X-Ray Images.",
                 authors: "S. ElSharief, S. Shurrab, B. Al Jorf, L, Lopez, F. Shamout.",
                 status: "Accepted",
                 venue: "AHLI Conference on Health, Inference, and Learning 2025",
-                link: "#" // https://proceedings.mlr.press/v287/elsharief25a.html
+                type: "Full Paper",
+                link: "https://proceedings.mlr.press/v287/elsharief25a"
             },
             pub4: {
                 title: "Multimodal Contrastive Image-EHR Pre-training Enhances In-hospital Deterioration Prediction.",
                 authors: "S. ElSharief, S. Shurrab, B. Al Jorf, L, Lopez, F. Shamout.",
                 status: "Accepted",
                 venue: "47th Conference of the IEEE Engineering in Medicine and Biology Society.",
-                link: "#" // Poster
+                type: "Poster",
+                link: "N/A"
             },
+            // Kept old pub5 key as paper to avoid breaking clicks if referenced elsewhere, though listed separately in UI
             pub5: {
-                title: "MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data.",
+                 title: "MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data.",
                 authors: "B. Al Jorf, F. Shamout.",
-                status: "Under Review",
+                status: "Accepted",
                 venue: "Machine Learning in Healthcare Conference 2025",
-                link: "#" // https://www.arxiv.org/abs/2508.09182
+                type: "Full Paper",
+                link: "https://proceedings.mlr.press/v298/jorf25a.html"
             },
             pub6: {
-                title: "Data-centric Guidelines for Designing AI Foundation Models in Medicine.",
+                title: "A Data-Centric Perspective on Designing AI Foundation Models for Healthcare.",
                 authors: "B. Al Jorf, B. Piechowski-Jozwiak, F. Shamout",
                 status: "Under Review",
-                venue: "npj Digital Medicine",
+                venue: "Frontiers in Digital Health",
+                type: "Full Paper",
                 link: "#" // TBD
             },
             pub7: {
-                title: "Roadmap towards Generalist AI Foundation Models in Healthcare: Capabilities and Outlook.",
+                title: "Multimodal Foundation Models in Medicine: A Roadmap towards Agentic Clinical AI.",
                 authors: "B. Al Jorf, S. Shurrab, D. Zhylko, F. Shamout.",
                 status: "In Preparation",
-                venue: "N/A", // Venue is typically not applicable for "in preparation"
+                venue: "N/A", 
+                type: "Full Paper",
                 link: "#" // TBD
+            },
+            pub8: {
+                title: "AgentiCDS: Improving Clinical LLM Reasoning using Multi-Agent Collaboration.",
+                authors: "B. Al Jorf, F. Shamout.",
+                status: "In Preparation",
+                venue: "N/A",
+                type: "Full Paper",
+                link: "#"
+            },
+            pub9: {
+                title: "Multimodal AI and Machine Learning for Precision Medicine",
+                authors: "B. Al Jorf (Presenter)",
+                status: "Accepted",
+                venue: "IEEE BioCAS 2025",
+                type: "Tutorial",
+                link: "#"
+            },
+            pub10: {
+                title: "Advancing Multimodal Foundation Models in Healthcare: A Framework of Guidelines, Reviews, and Novel Architectures",
+                authors: "B. Al Jorf, F. Shamout",
+                status: "Accepted",
+                venue: "2024 ADIA Symposium",
+                type: "Poster",
+                link: "N/A"
+            },
+            pub11: {
+                title: "MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data: Path to Agentic Systems",
+                authors: "B. Al Jorf, F. Shamout",
+                status: "Accepted",
+                venue: "2025 ADIA Symposium",
+                type: "Poster",
+                link: "N/A"
             }
         };
 
@@ -640,13 +716,24 @@
 
             document.getElementById('modal-pub-title').textContent = pub.title;
             // Bold "B. Al Jorf" in authors
-            const authorsHtml = pub.authors.replace(/B\. Al Jorf/g, '<strong>B. Al Jorf</strong>');
+            const authorsHtml = pub.authors ? pub.authors.replace(/B\. Al Jorf/g, '<strong>B. Al Jorf</strong>') : '';
             document.getElementById('modal-pub-authors').innerHTML = authorsHtml;
             document.getElementById('modal-pub-status').textContent = pub.status;
             document.getElementById('modal-pub-venue').textContent = pub.venue;
+            document.getElementById('modal-pub-type').textContent = pub.type;
             const pubLink = document.getElementById('modal-pub-link');
-            pubLink.href = pub.link;
-            pubLink.textContent = pub.link === '#' ? 'TBD' : pub.link;
+            
+            if (pub.link === 'N/A') {
+                pubLink.removeAttribute('href');
+                pubLink.classList.remove('text-purple-600', 'hover:underline');
+                pubLink.classList.add('text-gray-500');
+                pubLink.textContent = 'N/A';
+            } else {
+                pubLink.setAttribute('href', pub.link);
+                pubLink.classList.add('text-purple-600', 'hover:underline');
+                pubLink.classList.remove('text-gray-500');
+                pubLink.textContent = pub.link === '#' ? 'TBD' : 'View Publication';
+            }
 
             document.getElementById('publication-modal-overlay').classList.add('open');
         }
@@ -678,7 +765,5 @@
             showPage('about');
         });
     </script>
-    <script async src="//www.instagram.com/embed.js"></script>
 </body>
 </html>
-
