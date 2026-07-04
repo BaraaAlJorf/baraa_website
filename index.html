@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="AgHYHYI6avuox-qgJsWm1xTErxOyobtSDnH5HoSUVNo" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baraa Al Jorf - Personal Website</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -52,15 +51,11 @@
         }
         .content-page.active {
             display: block;
+            animation: fadeIn 0.4s ease-in-out;
         }
-        .project-toggle-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-        }
-        .project-toggle-content.expanded {
-            max-height: 500px;
-            transition: max-height 0.5s ease-in;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .university-logo {
             height: 2.5rem;
@@ -120,28 +115,90 @@
         .modal-close-btn:hover {
             color: #333;
         }
-        .publication-item, .project-item-header {
+        .publication-item {
             cursor: pointer;
-            padding: 0.5rem 0;
+            padding: 0.75rem 0;
             border-bottom: 1px dashed #e5e7eb;
             transition: background-color 0.2s ease-in-out;
         }
-        .publication-item:hover, .project-item-header:hover {
+        .publication-item:hover {
             background-color: #f9fafb;
+            padding-left: 0.5rem;
+            border-radius: 0.25rem;
         }
         .publication-item:last-child {
             border-bottom: none;
         }
-        .instagram-embed-block {
-            max-width: 540px;
-            min-width: 326px;
-            width: 100%;
-            margin: 1rem auto;
-            background: #FFF;
-            border: 0;
-            border-radius: 3px;
-            box-shadow: 0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);
-            padding: 0;
+        .news-item {
+            border-left: 3px solid #8B5CF6;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .news-date {
+            font-size: 0.875rem;
+            color: #6B7280;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .experience-timeline {
+            position: relative;
+            border-left: 4px solid #C4B5FD; /* purple-300 */
+            margin-left: 1rem;
+            padding-left: 2rem;
+            padding-bottom: 1rem;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -2.65rem;
+            top: 0.25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            background-color: #8B5CF6; /* purple-500 */
+            border: 4px solid white;
+            border-radius: 50%;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+        }
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.3);
+            background-color: #6D28D9; /* purple-700 */
+        }
+        .timeline-content {
+            background: #F9FAFB;
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            border: 1px solid #E5E7EB;
+            transition: all 0.3s ease;
+        }
+        .timeline-item:hover .timeline-content {
+            border-color: #8B5CF6;
+            box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.1), 0 2px 4px -1px rgba(139, 92, 246, 0.06);
+            transform: translateX(5px);
+        }
+        .exp-details {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out, margin-top 0.4s ease-out;
+        }
+        .exp-details.open {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        .exp-icon {
+            transition: transform 0.3s ease;
+        }
+        .timeline-item.active .exp-icon {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -149,12 +206,12 @@
     <!-- Navigation Bar -->
     <nav class="bg-purple-700 p-4 sticky-nav shadow-lg">
         <div class="max-w-4xl mx-auto flex flex-wrap justify-center space-x-4 md:space-x-6 text-lg">
-            <a href="#about" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">About</a>
+            <a href="#home" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">Home</a>
+            <a href="#education" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">Education</a>
             <a href="#research" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">Research</a>
             <a href="#experience" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">Experience</a>
-            <a href="#projects" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">Projects</a>
             <a href="#awards-skills" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">Awards & Skills</a>
-            <a href="#volunteer" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">Volunteer Work</a>
+            <a href="#beyond-ai" class="nav-link text-white hover:text-purple-200 transition duration-300 ease-in-out px-2 py-1">Beyond AI</a>
         </div>
     </nav>
 
@@ -163,10 +220,10 @@
             <div class="flex flex-col md:flex-row items-center md:justify-between">
                 <!-- Photo and Name/Title -->
                 <div class="flex flex-col md:flex-row items-center text-center md:text-left mb-6 md:mb-0">
-                    <img src="me.jpg" alt="Baraa Al Jorf" class="w-32 h-32 rounded-full object-cover mr-6 mb-4 md:mb-0 border-4 border-purple-200 shadow-md">
+                    <img src="me.jpg" alt="Baraa Al Jorf" onerror="this.src='https://via.placeholder.com/128?text=BA'" class="w-32 h-32 rounded-full object-cover mr-6 mb-4 md:mb-0 border-4 border-purple-200 shadow-md">
                     <div>
                         <h1 class="text-5xl font-extrabold text-gray-900 leading-tight">Baraa Al Jorf</h1>
-                        <p class="text-2xl text-gray-600 mt-2">Advancing Multimodal Foundation Models for Healthcare</p>
+                        <p class="text-2xl text-gray-600 mt-2">Advancing Multimodal Machine Learning for Healthcare</p>
                     </div>
                 </div>
             </div>
@@ -184,41 +241,118 @@
                 <a href="mailto:ba2797@columbia.edu" class="flex items-center text-purple-600 hover:underline">
                     <i class="fas fa-envelope mr-2 text-purple-600"></i>ba2797@columbia.edu
                 </a>
-                <a href="https://www.linkedin.com/in/baraaaljorf/" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
                     <i class="fab fa-linkedin mr-2 text-purple-600"></i>LinkedIn
                 </a>
-                <a href="https://scholar.google.com/citations?view_op=list_works&hl=en&user=ozfqb_MAAAAJ" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
                     <i class="fas fa-graduation-cap mr-2 text-purple-600"></i>Google Scholar
                 </a>
-                <a href="https://github.com/BaraaAlJorf" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
+                <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center text-purple-600 hover:underline">
                     <i class="fab fa-github mr-2 text-purple-600"></i>GitHub
                 </a>
             </div>
         </header>
 
         <main class="w-full max-w-4xl bg-white rounded-lg shadow-xl p-8">
-            <!-- About Page -->
-            <section id="about" class="content-page">
+            
+            <!-- Home (News & About) Page -->
+            <section id="home" class="content-page">
                 <h2 class="text-3xl font-bold text-gray-800 section-heading">
                     <i class="fas fa-info-circle"></i>About Me
                 </h2>
                 <p class="text-gray-700 leading-relaxed mb-8">
-                    I’m a PhD researcher at NYU in Computer Science, working on AI systems for healthcare — with a focus on clinical foundation models, multimodal learning, and medical data. My work integrates clinical notes, medical imaging, and EHRs to build machine learning systems that can support diagnosis, risk prediction, and clinical decision-making. Recently, I completed a Visiting PhD semester at Columbia University, where I took advanced coursework in causal inference and foundation model theoretical design. I’ve published research on fusion architectures and clinical benchmarks, presented at international AI and healthcare conferences, and helped lead events like the Clinical AI Bootcamp and Healthcare AI Summit. Open to research collaborations, clinical-AI roles, and opportunities that connect machine learning with real-world healthcare impact.
+                    I am a Computer Science PhD researcher at New York University and a Visiting Researcher at the University of Oxford's AI4DH lab. My work lies at the intersection of multimodal machine learning and healthcare, with a strong focus on clinical foundation models. I am passionate about building safe, agentic AI systems that synthesize complex data like clinical notes, medical imaging, and electronic health records to assist in critical tasks like diagnosis and risk prediction. Recently, I also spent a semester as a Visiting PhD student at Columbia University to deepen my foundation in causal inference and foundational LLM design.
                 </p>
 
-                <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                    <i class="fas fa-graduation-cap text-purple-600 mr-2"></i>Education
-                </h3>
+                <h2 class="text-3xl font-bold text-gray-800 section-heading">
+                    <i class="fas fa-newspaper"></i>Latest News
+                </h2>
+                
+                <div class="space-y-2">
+                    <div class="news-item">
+                        <div class="news-date">July 2026</div>
+                        <p class="text-gray-800">Heading to <strong>ICML 2026</strong> in Seoul, South Korea! I'll be presenting across three workshops: <em>Muslims in ML</em> (July 8), <em>Failure Modes of Agentic AI</em> (July 10), and <em>Forecasting as a New Frontier of Intelligence</em> (July 11).</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">June 2026</div>
+                        <p class="text-gray-800">Traveled to Seattle for the <strong>AHLI Conference on Health, Inference, and Learning (CHIL 2026)</strong> to present our accepted paper, <em>"AgentRx: A Benchmark Study of LLM Agents for Multimodal Clinical Prediction Tasks"</em>.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">June 2026</div>
+                        <p class="text-gray-800">Started a new position as a <strong>Visiting Researcher</strong> at the University of Oxford's AI4DH lab, focusing on integrating agentic AI systems for ICU risk prediction.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">June 2026</div>
+                        <p class="text-gray-800">Honored to receive the <strong>Best Student Talk</strong> award at the UK Open Multimodal AI Network (UKOMAIN) Workshop in <strong>London, UK</strong> for my presentation on AgentRx.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">April 2026</div>
+                        <p class="text-gray-800">Our perspective paper, <em>"A Data-Centric Perspective on Designing AI Foundation Models for Healthcare"</em>, was accepted for publication in <strong>Frontiers for Digital Health</strong>.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">September 2025</div>
+                        <p class="text-gray-800">Took on the role of <strong>Graduate Student Council President</strong> at New York University Abu Dhabi.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">July 2025</div>
+                        <p class="text-gray-800">Traveled to <strong>Copenhagen, Denmark</strong> for the <strong>47th IEEE EMBC</strong> to present our work on <em>"Enhancing In-hospital Mortality Prediction using Diverse Ensembles of Multimodal Fusion Networks"</em>.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">July 2025</div>
+                        <p class="text-gray-800">Conducted a one-week immersive shadowing experience at the <strong>Cleveland Clinic Abu Dhabi ICU</strong> to inform the design of the AgentRx benchmark.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">July 2025</div>
+                        <p class="text-gray-800">Our paper, <em>"MedMod: Multimodal Benchmark for Medical Prediction Tasks"</em>, was accepted to the <strong>AHLI Conference on Health, Inference, and Learning (CHIL 2025)</strong>.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">June 2025</div>
+                        <p class="text-gray-800">Presented our work, <em>"MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data"</em>, at the <strong>Machine Learning in Healthcare Conference (MLHC)</strong> at the <strong>Mayo Clinic in Rochester, MN</strong>.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">May 2025</div>
+                        <p class="text-gray-800">Completed my semester as a <strong>Visiting PhD Student</strong> at Columbia University, finishing coursework in Causal Inference and LLM Foundations.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">April 2025</div>
+                        <p class="text-gray-800">Traveled to <strong>New York City</strong> for the <strong>2025 Northeast Bioengineering Conference (NEBEC)</strong> to present our poster on <em>"MSMA: Multistage Missingness-Aware Fusion Network"</em>.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">February 2025</div>
+                        <p class="text-gray-800">Served as Communication Chair for the <strong>AI Revolution in Healthcare Summit</strong> (Clinical AI Lab x Medvarsity), coordinating with universities across the UAE.</p>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">January 2025</div>
+                        <p class="text-gray-800">Began my semester as a Visiting PhD student at Columbia University's Fu Foundation School of Engineering.</p>
+                    </div>
+                </div>
+                
+                <!-- Load More / Show Less Buttons -->
+                <div class="mt-8 flex justify-center space-x-4">
+                    <button id="show-less-news-btn" class="bg-white border-2 border-gray-400 text-gray-600 font-semibold px-6 py-2 rounded-full hover:bg-gray-50 hover:shadow-md transition duration-300 flex items-center" style="display: none;">
+                        <i class="fas fa-chevron-up mr-2"></i> Show Less
+                    </button>
+                    <button id="load-more-news-btn" class="bg-white border-2 border-purple-500 text-purple-600 font-semibold px-6 py-2 rounded-full hover:bg-purple-50 hover:shadow-md transition duration-300 flex items-center">
+                        Show Older News <i class="fas fa-chevron-down ml-2"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Education Page -->
+            <section id="education" class="content-page">
+                <h2 class="text-3xl font-bold text-gray-800 section-heading">
+                    <i class="fas fa-graduation-cap"></i>Education
+                </h2>
                 <div class="space-y-6">
                     <div>
                         <div class="education-entry-heading">
-                            <img src="nyulogo.png" alt="NYU Logo" class="university-logo">
-                            <h4 class="text-xl font-semibold text-gray-700">PhD in Computer Science, New York University <span class="text-gray-600 font-normal">9/2023 - Present</span></h4>
+                            <img src="nyulogo.png" alt="NYU Logo" onerror="this.style.display='none'" class="university-logo">
+                            <h4 class="text-xl font-semibold text-gray-700">PhD in Computer Science, New York University <span class="text-gray-600 font-normal">| 9/2023 - Present</span></h4>
                         </div>
                         <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
                             <li>Expected Graduation: 2028</li>
                             <li>GPA: 3.9/4.0</li>
-                            <li>Research Focus: Advancing Multimodal Foundation Models for Healthcare</li>
+                            <li>Research Focus: Advancing Multimodal Machine Learning for Healthcare</li>
                             <li>Relevant Coursework:</li>
                             <ul class="list-circle list-inside text-gray-600 ml-8">
                                 <li>NYU Tandon: Big Data, Algorithmic Machine Learning, AI for Games, Medical Robotics</li>
@@ -230,8 +364,8 @@
                     </div>
                     <div>
                         <div class="education-entry-heading">
-                            <img src="columbialogo.png" alt="Columbia University Logo" class="university-logo">
-                            <h4 class="text-xl font-semibold text-gray-700">Visiting PhD Student, Columbia University <span class="text-gray-600 font-normal">1/2025 – 5/2025</span></h4>
+                            <img src="columbialogo.png" alt="Columbia University Logo" onerror="this.style.display='none'" class="university-logo">
+                            <h4 class="text-xl font-semibold text-gray-700">Visiting PhD Student, Columbia University <span class="text-gray-600 font-normal">| 1/2025 – 5/2025</span></h4>
                         </div>
                         <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
                             <li>Attended Fu Foundation School of Engineering in the Inter-University Engineering Doctoral Consortium</li>
@@ -240,13 +374,13 @@
                     </div>
                     <div>
                         <div class="education-entry-heading">
-                            <img src="nyuadlogo.png" alt="NYU Abu Dhabi Logo" class="university-logo">
-                            <h4 class="text-xl font-semibold text-gray-700">BSc in Computer Engineering, New York University <span class="text-gray-600 font-normal">8/2019 - 5/2023</span></h4>
+                            <img src="nyuadlogo.png" alt="NYU Abu Dhabi Logo" onerror="this.style.display='none'" class="university-logo">
+                            <h4 class="text-xl font-semibold text-gray-700">BSc in Computer Engineering, New York University <span class="text-gray-600 font-normal">| 8/2019 - 5/2023</span></h4>
                         </div>
                         <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
-                            <li>Capstone Project: Design of Navigation Algorithm using Reinforcement learning for library robot</li>
+                            <li>Capstone Project: Design of Navigation Algorithm using Reinforcement Learning for Library Robot</li>
                             <li>GPA: 3.8/4.0</li>
-                            <li>Completed coursework in NYU Abu Dhabi (main campus), NYU Tandon, and NYU Tisch</li>
+                            <li>Completed coursework in NYU Abu Dhabi, NYU Tandon, and NYU Tisch</li>
                             <li>Attended international seminars in Prague, Czech Republic (June 2022) | Athens, Greece (Jan 2023)</li>
                         </ul>
                     </div>
@@ -259,48 +393,72 @@
                     <i class="fas fa-flask"></i>Research & Publications
                 </h2>
                 <div class="space-y-4">
-                    <h3 class="text-xl font-semibold text-gray-700 mt-4">Accepted</h3>
+                    
+                    <h3 class="text-xl font-semibold text-gray-700 mt-4 border-b pb-2">Accepted Manuscripts</h3>
                     <ul class="list-none pl-0 space-y-2">
-                        <li class="publication-item cursor-pointer" data-pub-id="pub9">
-                            <span class="text-purple-600 font-medium">Multimodal AI and Machine Learning for Precision Medicine.</span>
+                        <li class="publication-item" data-pub-id="pub1">
+                            <span class="text-purple-600 font-medium">AgentRx: A Benchmark Study of LLM Agents for Multimodal Clinical Prediction Tasks.</span>
+                            <div class="text-sm text-gray-500 mt-1">B. Al Jorf, F. Shamout. | AHLI Conference on Health, Inference, and Learning 2026</div>
                         </li>
-                         <li class="publication-item cursor-pointer" data-pub-id="pub5">
-                            <span class="text-purple-600 font-medium">MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data.</span>
-                        </li>
-                        <li class="publication-item cursor-pointer" data-pub-id="pub1">
-                            <span class="text-purple-600 font-medium">Enhancing In-hospital Mortality Prediction using Diverse Ensembles of Multimodal Fusion Networks.</span>
-                        </li>
-                        <li class="publication-item cursor-pointer" data-pub-id="pub2">
-                            <span class="text-purple-600 font-medium">MSMA: Multistage Missingness-Aware Fusion Network of Diverse Clinical Modalities for In-hospital Mortality Prediction.</span>
-                        </li>
-                        <li class="publication-item cursor-pointer" data-pub-id="pub3">
-                            <span class="text-purple-600 font-medium">MedMod: Multimodal Benchmark for Medical Prediction Tasks with Electronic Health Records and Chest X-Ray Images.</span>
-                        </li>
-                        <li class="publication-item cursor-pointer" data-pub-id="pub4">
-                            <span class="text-purple-600 font-medium">Multimodal Contrastive Image-EHR Pre-training Enhances In-hospital Deterioration Prediction.</span>
-                        </li>
-                        <li class="publication-item cursor-pointer" data-pub-id="pub10">
-                            <span class="text-purple-600 font-medium">Advancing Multimodal Foundation Models in Healthcare: A Framework of Guidelines, Reviews, and Novel Architectures.</span>
-                        </li>
-                        <li class="publication-item cursor-pointer" data-pub-id="pub11">
-                            <span class="text-purple-600 font-medium">MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data: Path to Agentic Systems.</span>
-                        </li>
-                    </ul>
-
-                    <h3 class="text-xl font-semibold text-gray-700 mt-6">Under Review</h3>
-                    <ul class="list-none pl-0 space-y-2">
-                        <li class="publication-item cursor-pointer" data-pub-id="pub6">
+                        <li class="publication-item" data-pub-id="pub2">
                             <span class="text-purple-600 font-medium">A Data-Centric Perspective on Designing AI Foundation Models for Healthcare.</span>
+                            <div class="text-sm text-gray-500 mt-1">B. Al Jorf, B. Piechowski-Jozwiak, F. Shamout. | Frontiers for Digital Health</div>
+                        </li>
+                        <li class="publication-item" data-pub-id="pub3">
+                            <span class="text-purple-600 font-medium">MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data.</span>
+                            <div class="text-sm text-gray-500 mt-1">B. Al Jorf, F. Shamout. | Machine Learning in Healthcare Conference 2025</div>
+                        </li>
+                        <li class="publication-item" data-pub-id="pub4">
+                            <span class="text-purple-600 font-medium">MedMod: Multimodal Benchmark for Medical Prediction Tasks.</span>
+                            <div class="text-sm text-gray-500 mt-1">S. ElSharief, S. Shurrab, B. Al Jorf, L. Lopez, F. Shamout. | AHLI Conference on Health, Inference, and Learning 2025</div>
                         </li>
                     </ul>
 
-                    <h3 class="text-xl font-semibold text-gray-700 mt-6">In Preparation</h3>
+                    <h3 class="text-xl font-semibold text-gray-700 mt-8 border-b pb-2">Under Review</h3>
                     <ul class="list-none pl-0 space-y-2">
-                        <li class="publication-item cursor-pointer" data-pub-id="pub8">
-                            <span class="text-purple-600 font-medium">AgentiCDS: Improving Clinical LLM Reasoning using Multi-Agent Collaboration.</span>
-                        </li>
-                        <li class="publication-item cursor-pointer" data-pub-id="pub7">
+                        <li class="publication-item" data-pub-id="pub5">
                             <span class="text-purple-600 font-medium">Multimodal Foundation Models in Medicine: A Roadmap towards Agentic Clinical AI.</span>
+                            <div class="text-sm text-gray-500 mt-1">B. Al Jorf, S. Shurrab, D. Zhylko, F. Shamout.</div>
+                        </li>
+                        <li class="publication-item" data-pub-id="pub6">
+                            <span class="text-purple-600 font-medium">When Teamwork Fails: A Structural Autopsy of Multi-Agent Failures in Clinical Risk Prediction.</span>
+                            <div class="text-sm text-gray-500 mt-1">B. Al Jorf, F. Shamout.</div>
+                        </li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-700 mt-8 border-b pb-2">Workshops, Presentations & Posters</h3>
+                    <ul class="list-none pl-0 space-y-4">
+                        <li>
+                            <strong class="text-gray-800">ICML 2026 - Failure Modes of Agentic AI</strong><br>
+                            <span class="text-gray-600">When Teamwork Fails: A Structural Autopsy of Multi-Agent Failures in Clinical Risk Prediction (B. Al Jorf, F. Shamout)</span>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">ICML 2026 - Forecasting as a New Frontier of Intelligence</strong><br>
+                            <span class="text-gray-600">AgentRx: A Benchmark for Multimodal Clinical Forecasting with LLM Agents (B. Al Jorf, F. Shamout)</span>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">ICML 2026 - Muslims in ML</strong><br>
+                            <span class="text-gray-600">AgentRx: A Benchmark for Multimodal Clinical Forecasting with LLM Agents (B. Al Jorf, F. Shamout)</span>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">UKOMAIN MultimodalAI 26 Workshop (Presentation & Poster)</strong><br>
+                            <span class="text-gray-600">AgentRx: A Benchmark Study of LLM Agents for Multimodal Clinical Prediction Tasks (B. Al Jorf)</span>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">IEEE BioCAS Conference 2025 (Tutorial)</strong><br>
+                            <span class="text-gray-600">Multimodal AI and Machine Learning for Precision Medicine (F. Shamout, B. Al Jorf, L. Lopez, C. Ma, C. Armanini)</span>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">2025 ADIA Symposium (Poster)</strong><br>
+                            <span class="text-gray-600">MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data: Path to Agentic Systems (B. Al Jorf, F. Shamout)</span>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">47th IEEE EMBC (Abstract & Poster)</strong><br>
+                            <span class="text-gray-600">Enhancing In-hospital Mortality Prediction using Diverse Ensembles of Multimodal Fusion Networks (B. Al Jorf, F. Shamout)</span>
+                        </li>
+                        <li>
+                            <strong class="text-gray-800">2025 Northeast Bioengineering Conference (Abstract & Poster)</strong><br>
+                            <span class="text-gray-600">MSMA: Multistage Missingness-Aware Fusion Network of Diverse Clinical Modalities for In-hospital Mortality Prediction (B. Al Jorf, F. Shamout)</span>
                         </li>
                     </ul>
                 </div>
@@ -311,110 +469,164 @@
                 <h2 class="text-3xl font-bold text-gray-800 section-heading">
                     <i class="fas fa-briefcase"></i>Leadership & Experience
                 </h2>
-                <div class="space-y-6">
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Graduate Teaching Assistant, New York University Abu Dhabi</h3>
-                        <p class="text-gray-600">9/2025 – Present</p>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Mentored 25 students in Arabic Computational Linguistics, clarifying complex NLP concepts.</li>
-                            <li>Developed and graded assignments, providing constructive feedback to reinforce student learning.</li>
-                        </ul>
+                <p class="text-gray-500 mb-6 text-sm italic"><i class="fas fa-hand-pointer mr-2"></i>Click on any role to expand details</p>
+                <div class="experience-timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-item" onclick="toggleExp(this)">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">Visiting Researcher</h3>
+                                    <p class="text-purple-600 font-medium text-sm">University of Oxford - AI4DH lab | 6/2026 - Present</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400 exp-icon text-xl"></i>
+                            </div>
+                            <div class="exp-details">
+                                <ul class="list-disc list-inside text-gray-600 ml-2 space-y-1">
+                                    <li>Integrating agentic AI systems and supervised baseline models into the CRITICAL-MM benchmark.</li>
+                                    <li>Designing a novel energy-based agentic system for ICU risk prediction.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Graduate Student Council President, New York University Abu Dhabi</h3>
-                        <p class="text-gray-600">9/2025 - Present</p>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Organized and managed logistics for large scale graduate community events.</li>
-                            <li>Coordinated communications between the graduate student community and university admin.</li>
-                            <li>Represented graduate students as a member of the university bookstore committee.</li>
-                        </ul>
+                    <!-- Item 2 -->
+                    <div class="timeline-item" onclick="toggleExp(this)">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">Graduate Research Assistant</h3>
+                                    <p class="text-purple-600 font-medium text-sm">NYU Abu Dhabi - Clinical AI Lab | 7/2023 - Present</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400 exp-icon text-xl"></i>
+                            </div>
+                            <div class="exp-details">
+                                <ul class="list-disc list-inside text-gray-600 ml-2 space-y-1">
+                                    <li>Trained, tested, and benchmarked 20+ fusion architectures using MIMIC-IV multimodal data.</li>
+                                    <li>Screened 140+ papers for a multimodal foundation model literature review.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Intensive Care Unit Shadow, Cleveland Clinic Abu Dhabi</h3>
-                        <p class="text-gray-600">7/2025</p>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Conducted a one-week immersive shadowing experience to inform the design of the AgentiCDS system.</li>
-                            <li>Attended daily ICU rounds to identify opportunities for AI-driven predictive tools.</li>
-                        </ul>
+                    <!-- Item 3 -->
+                    <div class="timeline-item" onclick="toggleExp(this)">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">Graduate Student Council President</h3>
+                                    <p class="text-purple-600 font-medium text-sm">New York University Abu Dhabi | 9/2025 - Present</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400 exp-icon text-xl"></i>
+                            </div>
+                            <div class="exp-details">
+                                <ul class="list-disc list-inside text-gray-600 ml-2 space-y-1">
+                                    <li>Organized and managed logistics for large scale graduate community events.</li>
+                                    <li>Coordinated communications between the graduate student community and university admin.</li>
+                                    <li>Represented graduate students as a member of the university bookstore committee.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Graduate Research Assistant, New York University Abu Dhabi</h3>
-                        <p class="text-gray-600">7/2023 - Present</p>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Trained and tested 7 novel fusion architectures using MIMIC-IV, MIMIC-CXR, and MIMIC-IV Notes datasets, achieving improvements in AUROC/AUPRC across evaluation tasks with 3 of them.</li>
-                            <li>Benchmarked 6 supervised multimodal architectures and 2 unimodal architectures on 6 tasks using the MIMIC-IV and MIMIC-CXR datasets.</li>
-                            <li>Screened 140+ papers for a multimodal foundation model literature review, culminating in 50 papers relevant for data extraction.</li>
-                        </ul>
+                    <!-- Item 4 -->
+                    <div class="timeline-item" onclick="toggleExp(this)">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">Graduate Teaching Assistant</h3>
+                                    <p class="text-purple-600 font-medium text-sm">New York University Abu Dhabi | 9/2025 - 1/2026</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400 exp-icon text-xl"></i>
+                            </div>
+                            <div class="exp-details">
+                                <ul class="list-disc list-inside text-gray-600 ml-2 space-y-1">
+                                    <li>Mentored 25 students in Arabic Computational Linguistics, clarifying complex NLP concepts.</li>
+                                    <li>Developed and graded assignments, providing constructive feedback to reinforce student learning.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Communication Chair, AI Revolution in Healthcare Summit, Clinical AI Lab x Medvarsity</h3>
-                        <p class="text-gray-600">2/2025</p>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Managed communication and outreach with 10 UAE universities.</li>
-                            <li>Reviewed 20 abstract submissions and selected 8 for a conference poster session.</li>
-                            <li>Coordinated with Medvarsity to ensure smooth conference planning and execution.</li>
-                        </ul>
+                    <!-- Item 5 -->
+                    <div class="timeline-item" onclick="toggleExp(this)">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">Intensive Care Unit Shadow</h3>
+                                    <p class="text-purple-600 font-medium text-sm">Cleveland Clinic Abu Dhabi | 7/2025</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400 exp-icon text-xl"></i>
+                            </div>
+                            <div class="exp-details">
+                                <ul class="list-disc list-inside text-gray-600 ml-2 space-y-1">
+                                    <li>Conducted a one-week immersive shadowing experience to inform the design of the AgentRx benchmark.</li>
+                                    <li>Attended daily ICU rounds to identify opportunities for AI-driven predictive tools.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Moderator, Clinical AI Bootcamp, Clinical AI Lab</h3>
-                        <p class="text-gray-600">11/2024</p>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Collaborated with the Clinical AI team to organize a bootcamp attended by 20+ healthcare experts.</li>
-                            <li>Developed guidelines for focus group discussions on multimodal data handling in clinical settings.</li>
-                            <li>Moderated a focus group session, gathering clinical insights into the challenges and opportunities of clinical AI deployment.</li>
-                        </ul>
+                    <!-- Item 6 -->
+                    <div class="timeline-item" onclick="toggleExp(this)">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">Communication Chair</h3>
+                                    <p class="text-purple-600 font-medium text-sm">AI Revolution in Healthcare Summit | 2/2025</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400 exp-icon text-xl"></i>
+                            </div>
+                            <div class="exp-details">
+                                <ul class="list-disc list-inside text-gray-600 ml-2 space-y-1">
+                                    <li>Managed communication and outreach with 10 UAE universities.</li>
+                                    <li>Reviewed 20 abstract submissions and selected 8 for a conference poster session.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 7 -->
+                    <div class="timeline-item" onclick="toggleExp(this)">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800">Moderator</h3>
+                                    <p class="text-purple-600 font-medium text-sm">Clinical AI Bootcamp | 11/2024</p>
+                                </div>
+                                <i class="fas fa-chevron-down text-gray-400 exp-icon text-xl"></i>
+                            </div>
+                            <div class="exp-details">
+                                <ul class="list-disc list-inside text-gray-600 ml-2 space-y-1">
+                                    <li>Collaborated with the Clinical AI team to organize a bootcamp attended by 20+ healthcare experts.</li>
+                                    <li>Developed guidelines for focus group and moderated discussions on data handling in clinical settings.</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Projects Page -->
-            <section id="projects" class="content-page">
+            <!-- Beyond AI Page (Art & Volunteering) -->
+            <section id="beyond-ai" class="content-page">
                 <h2 class="text-3xl font-bold text-gray-800 section-heading">
-                    <i class="fas fa-laptop-code"></i>Projects
+                    <i class="fas fa-palette"></i>Beyond AI
                 </h2>
-                <div class="space-y-6">
-                    <!-- Project 1: Effectiveness of Layered Pretraining for Foundation Models -->
-                    <div>
-                        <div class="project-item-header flex justify-between items-center" onclick="toggleProject('project-1-details')">
-                            <h3 class="text-xl font-semibold text-gray-700">Effectiveness of Layered Pretraining for Foundation Models</h3>
-                            <span class="text-purple-600 text-2xl">+</span>
-                        </div>
-                        <div id="project-1-details" class="project-toggle-content">
-                            <p class="text-gray-600 mt-2 ml-4">Detailed a theoretical framework proving the effect of layered pretraining for Large Language Model encoders for classification tasks and verified our findings empirically.</p>
-                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="#" target="_blank" class="text-purple-600 hover:underline">View Project</a></p>
-                        </div>
-                    </div>
-                    <!-- Project 2: In-Context-Learning with LLMs -->
-                    <div>
-                        <div class="project-item-header flex justify-between items-center" onclick="toggleProject('project-2-details')">
-                            <h3 class="text-xl font-semibold text-gray-700">In-Context-Learning with LLMs</h3>
-                            <span class="text-purple-600 text-2xl">+</span>
-                        </div>
-                        <div id="project-2-details" class="project-toggle-content">
-                            <p class="text-gray-600 mt-2 ml-4">Developed a GPT-4 based AI agent leveraging in-context learning to improve LLM decision-making. Designed experiments against heuristic bots and human players, achieving up to 80% win rate.</p>
-                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="#" target="_blank" class="text-purple-600 hover:underline">View Project</a></p>
-                        </div>
-                    </div>
-                    <!-- Project 3: Dynamic Hierarchical Fusion -->
-                    <div>
-                        <div class="project-item-header flex justify-between items-center" onclick="toggleProject('project-3-details')">
-                            <h3 class="text-xl font-semibold text-gray-700">Dynamic Hierarchical Fusion</h3>
-                            <span class="text-purple-600 text-2xl">+</span>
-                        </div>
-                        <div id="project-3-details" class="project-toggle-content">
-                            <p class="text-gray-600 mt-2 ml-4">Created a novel hierarchical fusion framework incorporating sample-specific fusion of electronic health records, chest x-rays, discharge notes, and radiology reports.</p>
-                            <p class="text-gray-700 mt-2 ml-4"><strong>Link:</strong> <a href="#" target="_blank" class="text-purple-600 hover:underline">View Project</a></p>
-                        </div>
-                    </div>
+                <p class="text-gray-700 leading-relaxed mb-8">
+                    When I'm not training multimodal models or analyzing clinical data, you can usually find me sketching, mentoring students, or engaging with the community. Here is a glimpse into some of my creative outlets and volunteer work.
+                </p>
 
-                    <!-- Art Projects Section -->
-                    <div class="mt-8 pt-6 border-t border-gray-200">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Art Side -->
+                    <div class="w-full md:w-1/2">
                         <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-                            <i class="fas fa-paint-brush text-purple-600 mr-2"></i>Art Projects
+                            <i class="fas fa-pencil-alt text-pink-500 mr-2"></i>Art Projects
                         </h3>
-                        <div class="flex flex-col items-center">
+                        <p class="text-gray-600 mb-4">I enjoy digital and traditional illustration. Check out some of my recent pieces and sketches on my art account.</p>
+                        <div class="flex justify-center bg-gray-50 p-4 rounded-lg border border-gray-200">
                             <!-- Instagram Embed Blockquote -->
-                            <blockquote class="instagram-media instagram-embed-block" data-instgrm-permalink="https://www.instagram.com/baraadraws/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14">
+                            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/baraadraws/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
                                 <div style="padding:16px;">
                                     <a href="https://www.instagram.com/baraadraws/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
                                         <div style=" display: flex; flex-direction: row; align-items: center;">
@@ -425,13 +637,42 @@
                                             </div>
                                         </div>
                                         <div style="padding: 19% 0;"></div>
-                                        <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><i class="fab fa-instagram text-4xl text-gray-400"></i></div>
-                                        <div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this profile on Instagram</div></div>
+                                        <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><i class="fab fa-instagram text-4xl text-pink-500"></i></div>
+                                        <div style="padding-top: 8px;">
+                                            <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View @baraadraws on Instagram</div>
+                                        </div>
                                         <div style="padding: 12.5% 0;"></div>
                                     </a>
                                 </div>
                             </blockquote>
                             <script async src="//www.instagram.com/embed.js"></script>
+                        </div>
+                    </div>
+
+                    <!-- Volunteer Side -->
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-hand-holding-heart text-teal-500 mr-2"></i>Community Impact
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="border-l-4 border-teal-400 pl-4">
+                                <h4 class="text-lg font-semibold text-gray-800">Engineers for Social Impact</h4>
+                                <p class="text-sm text-gray-500 mb-1">Urbz - Dharavi Mumbai, India</p>
+                                <p class="text-gray-600 text-sm">Developed a children's coding curriculum with a local company in Dharavi for a daycare center and produced a documentary film highlighting the experiences of 30 community members.</p>
+                            </div>
+                            <div class="border-l-4 border-teal-400 pl-4">
+                                <h4 class="text-lg font-semibold text-gray-800">Special Needs Adaptive Program (SNAP)</h4>
+                                <p class="text-sm text-gray-500 mb-1">NYUAD - Abu Dhabi, UAE</p>
+                                <p class="text-gray-600 text-sm">Dedicated weekly volunteer sessions to teach basketball and physical coordination to children with autism and Down syndrome.</p>
+                            </div>
+                            <div class="border-l-4 border-teal-400 pl-4">
+                                <h4 class="text-lg font-semibold text-gray-800">STEM & Educational Mentorship</h4>
+                                <p class="text-gray-600 text-sm mt-1">Facilitated leadership workshops for middle schoolers with the <strong>Boys Education Network</strong>, hosted virtual physics tutoring for high school juniors via <strong>NYUAD Community Outreach</strong>, and mentored female students pursuing tech degrees as a <strong>WeSTEM Mentor</strong>.</p>
+                            </div>
+                             <div class="border-l-4 border-teal-400 pl-4">
+                                <h4 class="text-lg font-semibold text-gray-800">Community Engagement</h4>
+                                <p class="text-gray-600 text-sm mt-1">Volunteered with <strong>Habitat for Humanity</strong> (Genesee County) building houses, supported the <strong>Hala Mondial</strong> initiative engaging neurodivergent students during the World Cup, and served as an usher for the <strong>Hay Festival of Literature and the Arts</strong>.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -442,127 +683,63 @@
                 <h2 class="text-3xl font-bold text-gray-800 section-heading">
                     <i class="fas fa-star"></i>Awards & Skills
                 </h2>
-                <div class="mb-8">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                
+                <div class="mb-10">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                         <i class="fas fa-award text-purple-600 mr-2"></i>Awards
                     </h3>
-                    <div class="space-y-4">
-                        <div>
-                            <h4 class="text-xl font-semibold text-gray-700">NYUAD Global PhD Fellowship <span class="text-gray-500 text-base font-normal">| 7/2023</span></h4>
-                            <p class="text-gray-600 mt-1 ml-4">- 5-year doctoral fellowship awarded for academic merit</p>
+                    <div class="space-y-6">
+                        <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                            <h4 class="text-xl font-semibold text-gray-800">UK Open Multimodal AI Network Best Student Talk <span class="text-purple-600 text-sm ml-2 font-normal">6/2026</span></h4>
+                            <p class="text-gray-700 mt-2">Awarded for the most outstanding student presentation at the MultimodalAI 26 Workshop.</p>
                         </div>
-                        <div>
-                            <h4 class="text-xl font-semibold text-gray-700">Abu Dhabi Golden Visa <span class="text-gray-500 text-base font-normal">| 7/2023</span></h4>
-                            <p class="text-gray-600 mt-1 ml-4">10-year visa awarded for exceptional academic achievement</p>
+                        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-gray-400">
+                            <h4 class="text-xl font-semibold text-gray-800">NYUAD Global PhD Fellowship <span class="text-gray-500 text-sm ml-2 font-normal">7/2023</span></h4>
+                            <p class="text-gray-700 mt-2">5-year doctoral fellowship awarded for academic merit.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg border-l-4 border-gray-400">
+                            <h4 class="text-xl font-semibold text-gray-800">Abu Dhabi Golden Visa <span class="text-gray-500 text-sm ml-2 font-normal">7/2023</span></h4>
+                            <p class="text-gray-700 mt-2">10-year visa awarded for exceptional academic achievement.</p>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                         <i class="fas fa-tools text-purple-600 mr-2"></i>Skills
                     </h3>
-                    <div class="space-y-4">
+                    <div class="space-y-6">
                         <div>
-                            <h4 class="text-xl font-semibold text-gray-700">Programming:</h4>
-                            <div class="flex flex-wrap gap-2 mt-1 ml-4">
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">C++</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">MATLAB</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Pytorch</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Tensorflow</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">ROS</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Bash</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">High Performance Computing</span>
+                            <h4 class="text-lg font-semibold text-gray-700 mb-3">Programming & Technology</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-1.5 rounded-full">Python</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-1.5 rounded-full">C++</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-1.5 rounded-full">MATLAB</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-1.5 rounded-full">Pytorch</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-1.5 rounded-full">Tensorflow</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-1.5 rounded-full">ROS</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-1.5 rounded-full">Bash</span>
+                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-1.5 rounded-full">High Performance Computing</span>
                             </div>
                         </div>
                         <div>
-                            <h4 class="text-xl font-semibold text-gray-700">Leadership:</h4>
-                            <div class="flex flex-wrap gap-2 mt-1 ml-4">
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Public Speaking</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Peer-counselling</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Active Listening</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Project Management</span>
-                                <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Multi-tasking</span>
+                            <h4 class="text-lg font-semibold text-gray-700 mb-3">Leadership & Soft Skills</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-1.5 rounded-full">Public Speaking</span>
+                                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-1.5 rounded-full">Peer-counselling</span>
+                                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-1.5 rounded-full">Active Listening</span>
+                                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-1.5 rounded-full">Project Management</span>
+                                <span class="bg-gray-200 text-gray-800 text-sm font-medium px-4 py-1.5 rounded-full">Multi-tasking</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Volunteer Work Page -->
-            <section id="volunteer" class="content-page">
-                <h2 class="text-3xl font-bold text-gray-800 section-heading">
-                    <i class="fas fa-hand-holding-heart"></i>Volunteer Work
-                </h2>
-                <div class="space-y-6">
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Engineers for Social Impact, Urbz- Dharavi Mumbai, India</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Developed a children's coding curriculum with local company in Dharavi for a daycare center.</li>
-                            <li>Produced a film showcasing the challenges faced by 30 interviewed community members.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Special Needs Adaptive Program (SNAP), NYUAD- Abu Dhabi, UAE</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
-                            <li>Volunteered weekly to teach basketball to 15 children with autism and Down syndrome.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Boys Education Network</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Facilitated 4 leadership workshops for 6 middle school students in Abu Dhabi.</li>
-                            <li>Workshops covered a range of topics with emphasis on growing in the new normal enforced by the COVID-19 pandemic.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">NYUAD Community Outreach Virtual Tutoring</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Hosted 10 hours of virtual physics tutoring sessions for 2 high school juniors.</li>
-                            <li>Tutored students at the Bangladeshi School in Abu Dhabi.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">WeSTEM Mentor</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4 space-y-2">
-                            <li>Mentored a sophomore through weekly meetings as part of an initiative.</li>
-                            <li>Encouraged women to pursue STEM college degrees.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Hala Mondial Volunteer</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
-                            <li>Engaged with students on the autism spectrum and children with Down's syndrome.</li>
-                            <li>Celebrated the World Cup and practiced football among other activities.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Student Volunteer, Genesee County Habitat for Humanity</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
-                            <li>Volunteered with Habitat for Humanity to help in building a house.</li>
-                            <li>Part of the Engineers for Social Impact program.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Library Assistant, New York University Abu Dhabi</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
-                            <li>Helped in scanning books to digitize them.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-gray-700">Usher, HAY FESTIVAL OF LITERATURE AND THE ARTS LIMITED</h3>
-                        <ul class="list-disc list-inside text-gray-600 mt-2 ml-4">
-                            <li>Ushered for the Hay Festival in Abu Dhabi.</li>
-                            <li>Worked in front of the theater and admitted ticket holders.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
         </main>
 
         <footer class="w-full max-w-4xl text-center text-gray-600 mt-8 py-4 border-t border-gray-300">
-            <p>&copy; 2025 Baraa Al Jorf. All rights reserved.</p>
+            <p>&copy; 2026 Baraa Al Jorf. All rights reserved.</p>
         </footer>
     </div>
 
@@ -574,8 +751,7 @@
             <p class="text-gray-700 mb-2"><strong>Authors:</strong> <span id="modal-pub-authors"></span></p>
             <p class="text-gray-700 mb-2"><strong>Status:</strong> <span id="modal-pub-status"></span></p>
             <p class="text-gray-700 mb-2"><strong>Venue:</strong> <span id="modal-pub-venue"></span></p>
-            <p class="text-gray-700 mb-2"><strong>Type:</strong> <span id="modal-pub-type"></span></p>
-            <p class="text-gray-700 mb-4"><strong>Link:</strong> <a id="modal-pub-link" href="#" target="_blank" class="text-purple-600 hover:underline">TBD</a></p>
+            <p class="text-gray-700 mb-4" id="modal-link-container"><strong>Link:</strong> <a id="modal-pub-link" href="#" target="_blank" class="text-purple-600 hover:underline">TBD</a></p>
         </div>
     </div>
 
@@ -583,92 +759,45 @@
         // Data for research publications
         const publications = {
             pub1: {
-                title: "Enhancing In-hospital Mortality Prediction using Diverse Ensembles of Multimodal Fusion Networks.",
+                title: "AgentRx: A Benchmark Study of LLM Agents for Multimodal Clinical Prediction Tasks",
                 authors: "B. Al Jorf, F. Shamout.",
                 status: "Accepted",
-                venue: "47th Conference of the IEEE Engineering in Medicine and Biology Society.",
-                type: "Poster",
-                link: "N/A"
+                venue: "AHLI Conference on Health, Inference, and Learning 2026",
+                link: "https://arxiv.org/abs/2605.10286"
             },
             pub2: {
-                title: "MSMA: Multistage Missingness-Aware Fusion Network of Diverse Clinical Modalities for In-hospital Mortality Prediction.",
-                authors: "B. Al Jorf, F. Shamout.",
+                title: "A Data-Centric Perspective on Designing AI Foundation Models for Healthcare",
+                authors: "B. Al Jorf, B. Piechowski-Jozwiak, F. Shamout.",
                 status: "Accepted",
-                venue: "2025 Northeast Bioengineering Conference.",
-                type: "Poster",
-                link: "N/A"
+                venue: "Frontiers for Digital Health",
+                link: "https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2026.1738523/full"
             },
             pub3: {
-                title: "MedMod: Multimodal Benchmark for Medical Prediction Tasks with Electronic Health Records and Chest X-Ray Images.",
-                authors: "S. ElSharief, S. Shurrab, B. Al Jorf, L, Lopez, F. Shamout.",
-                status: "Accepted",
-                venue: "AHLI Conference on Health, Inference, and Learning 2025",
-                type: "Full Paper",
-                link: "https://proceedings.mlr.press/v287/elsharief25a"
-            },
-            pub4: {
-                title: "Multimodal Contrastive Image-EHR Pre-training Enhances In-hospital Deterioration Prediction.",
-                authors: "S. ElSharief, S. Shurrab, B. Al Jorf, L, Lopez, F. Shamout.",
-                status: "Accepted",
-                venue: "47th Conference of the IEEE Engineering in Medicine and Biology Society.",
-                type: "Poster",
-                link: "N/A"
-            },
-            // Kept old pub5 key as paper to avoid breaking clicks if referenced elsewhere, though listed separately in UI
-            pub5: {
-                 title: "MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data.",
+                title: "MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data",
                 authors: "B. Al Jorf, F. Shamout.",
                 status: "Accepted",
                 venue: "Machine Learning in Healthcare Conference 2025",
-                type: "Full Paper",
-                link: "https://proceedings.mlr.press/v298/jorf25a.html"
-            },
-            pub6: {
-                title: "A Data-Centric Perspective on Designing AI Foundation Models for Healthcare.",
-                authors: "B. Al Jorf, B. Piechowski-Jozwiak, F. Shamout",
-                status: "Under Review",
-                venue: "Frontiers in Digital Health",
-                type: "Full Paper",
-                link: "#" // TBD
-            },
-            pub7: {
-                title: "Multimodal Foundation Models in Medicine: A Roadmap towards Agentic Clinical AI.",
-                authors: "B. Al Jorf, S. Shurrab, D. Zhylko, F. Shamout.",
-                status: "In Preparation",
-                venue: "N/A", 
-                type: "Full Paper",
-                link: "#" // TBD
-            },
-            pub8: {
-                title: "AgentiCDS: Improving Clinical LLM Reasoning using Multi-Agent Collaboration.",
-                authors: "B. Al Jorf, F. Shamout.",
-                status: "In Preparation",
-                venue: "N/A",
-                type: "Full Paper",
-                link: "#"
-            },
-            pub9: {
-                title: "Multimodal AI and Machine Learning for Precision Medicine",
-                authors: "B. Al Jorf (Presenter)",
-                status: "Accepted",
-                venue: "IEEE BioCAS 2025",
-                type: "Tutorial",
-                link: "#"
-            },
-            pub10: {
-                title: "Advancing Multimodal Foundation Models in Healthcare: A Framework of Guidelines, Reviews, and Novel Architectures",
-                authors: "B. Al Jorf, F. Shamout",
-                status: "Accepted",
-                venue: "2024 ADIA Symposium",
-                type: "Poster",
                 link: "N/A"
             },
-            pub11: {
-                title: "MedPatch: Confidence-Guided Multi-Stage Fusion for Multimodal Clinical Data: Path to Agentic Systems",
-                authors: "B. Al Jorf, F. Shamout",
+            pub4: {
+                title: "MedMod: Multimodal Benchmark for Medical Prediction Tasks",
+                authors: "S. ElSharief, S. Shurrab, B. Al Jorf, L. Lopez, F. Shamout.",
                 status: "Accepted",
-                venue: "2025 ADIA Symposium",
-                type: "Poster",
+                venue: "AHLI Conference on Health, Inference, and Learning 2025",
+                link: "N/A"
+            },
+            pub5: {
+                title: "Multimodal Foundation Models in Medicine: A Roadmap towards Agentic Clinical AI",
+                authors: "B. Al Jorf, S. Shurrab, D. Zhylko, F. Shamout.",
+                status: "Under Review",
+                venue: "N/A",
+                link: "N/A"
+            },
+            pub6: {
+                title: "When Teamwork Fails: A Structural Autopsy of Multi-Agent Failures in Clinical Risk Prediction",
+                authors: "B. Al Jorf, F. Shamout.",
+                status: "Under Review",
+                venue: "N/A",
                 link: "N/A"
             }
         };
@@ -695,44 +824,26 @@
             });
         }
 
-        // Specific toggle function for nested project details
-        function toggleProject(projectId) {
-            const projectDetails = document.getElementById(projectId);
-            const toggleSpan = projectDetails.previousElementSibling.querySelector('span');
-
-            if (projectDetails.classList.contains('expanded')) {
-                projectDetails.classList.remove('expanded');
-                toggleSpan.textContent = '+';
-            } else {
-                projectDetails.classList.add('expanded');
-                toggleSpan.textContent = '-';
-            }
-        }
-
         // Function to open the publication modal
         function openPublicationModal(pubId) {
             const pub = publications[pubId];
             if (!pub) return;
 
             document.getElementById('modal-pub-title').textContent = pub.title;
-            // Bold "B. Al Jorf" in authors
             const authorsHtml = pub.authors ? pub.authors.replace(/B\. Al Jorf/g, '<strong>B. Al Jorf</strong>') : '';
             document.getElementById('modal-pub-authors').innerHTML = authorsHtml;
-            document.getElementById('modal-pub-status').textContent = pub.status;
+            document.getElementById('modal-pub-status').innerHTML = `<span class="${pub.status === 'Accepted' ? 'text-green-600 font-semibold' : 'text-yellow-600 font-semibold'}">${pub.status}</span>`;
             document.getElementById('modal-pub-venue').textContent = pub.venue;
-            document.getElementById('modal-pub-type').textContent = pub.type;
+
             const pubLink = document.getElementById('modal-pub-link');
-            
-            if (pub.link === 'N/A') {
-                pubLink.removeAttribute('href');
-                pubLink.classList.remove('text-purple-600', 'hover:underline');
-                pubLink.classList.add('text-gray-500');
-                pubLink.textContent = 'N/A';
-            } else {
+            const linkContainer = document.getElementById('modal-link-container');
+
+            if (pub.link && pub.link !== 'N/A') {
                 pubLink.setAttribute('href', pub.link);
-                pubLink.classList.add('text-purple-600', 'hover:underline');
-                pubLink.classList.remove('text-gray-500');
-                pubLink.textContent = pub.link === '#' ? 'TBD' : 'View Publication';
+                pubLink.textContent = "View Publication";
+                linkContainer.style.display = 'block';
+            } else {
+                linkContainer.style.display = 'none';
             }
 
             document.getElementById('publication-modal-overlay').classList.add('open');
@@ -741,6 +852,28 @@
         // Function to close the publication modal
         function closePublicationModal() {
             document.getElementById('publication-modal-overlay').classList.remove('open');
+        }
+
+        // Function to toggle experience accordion
+        function toggleExp(element) {
+            const details = element.querySelector('.exp-details');
+            
+            // If it's already open, just close it
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+                details.classList.remove('open');
+                return;
+            }
+            
+            // Close all other open items
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                item.classList.remove('active');
+                item.querySelector('.exp-details').classList.remove('open');
+            });
+            
+            // Open the clicked item
+            element.classList.add('active');
+            details.classList.add('open');
         }
 
         // Event listeners for navigation links
@@ -761,10 +894,75 @@
                 });
             });
 
-            // Initialize by showing the first page (About)
-            showPage('about');
+            // Initialize by showing the Home page first
+            showPage('home');
+            
+            // Open the first experience item by default
+            const firstExp = document.querySelector('.timeline-item');
+            if (firstExp) toggleExp(firstExp);
+
+            // News "Load More" and "Show Less" functionality
+            const newsItems = document.querySelectorAll('.news-item');
+            const loadMoreBtn = document.getElementById('load-more-news-btn');
+            const showLessBtn = document.getElementById('show-less-news-btn');
+            let currentVisibleNews = 5;
+
+            // Initially hide items beyond the first 5
+            newsItems.forEach((item, index) => {
+                if (index >= currentVisibleNews) {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Initial button state
+            if (newsItems.length <= currentVisibleNews && loadMoreBtn) {
+                loadMoreBtn.style.display = 'none';
+            }
+
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', () => {
+                    const nextVisible = Math.min(currentVisibleNews + 5, newsItems.length);
+                    for (let i = currentVisibleNews; i < nextVisible; i++) {
+                        if (newsItems[i]) {
+                            newsItems[i].style.display = 'block';
+                            newsItems[i].style.animation = 'fadeIn 0.4s ease-in-out';
+                        }
+                    }
+                    currentVisibleNews = nextVisible;
+
+                    // Show the "Show Less" button since we expanded
+                    showLessBtn.style.display = 'flex';
+
+                    // Hide "Load More" if all items are visible
+                    if (currentVisibleNews >= newsItems.length) {
+                        loadMoreBtn.style.display = 'none';
+                    }
+                });
+            }
+
+            if (showLessBtn) {
+                showLessBtn.addEventListener('click', () => {
+                    // Find out how many items to hide (usually 5, but might be less if we are at the end of the list)
+                    let itemsToHide = currentVisibleNews % 5 === 0 ? 5 : currentVisibleNews % 5;
+                    const nextVisible = Math.max(5, currentVisibleNews - itemsToHide);
+                    
+                    for (let i = nextVisible; i < currentVisibleNews; i++) {
+                        if (newsItems[i]) {
+                            newsItems[i].style.display = 'none';
+                        }
+                    }
+                    currentVisibleNews = nextVisible;
+
+                    // Show the "Load More" button since we collapsed
+                    loadMoreBtn.style.display = 'flex';
+
+                    // Hide "Show Less" if we are back to the minimum 5 items
+                    if (currentVisibleNews <= 5) {
+                        showLessBtn.style.display = 'none';
+                    }
+                });
+            }
         });
     </script>
 </body>
 </html>
-
